@@ -9,7 +9,8 @@ $sf_paths = array(
     'admin/new',
     'admin/edit',
     'admin/delete',
-    'admin/posts'
+    'admin/posts',
+    'admin/install'
 );
 
 # Route Requests to Admin

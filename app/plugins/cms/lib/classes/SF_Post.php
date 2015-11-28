@@ -112,7 +112,7 @@ class SF_Post {
                     'type[!]' => 'cover_image'
                 )
             )
-        )
+        );
 
         return $media;
 
