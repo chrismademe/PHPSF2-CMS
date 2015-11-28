@@ -1,0 +1,180 @@
+@mixin hero($size: 'medium') {
+    background-color: $brand;
+    position: relative;
+
+    @if $size == 'viewport' {
+        height: 100vh;
+    }
+
+    @if $size == 'small' {
+        @include rem(height, 15rem);
+
+        @include bp('small') {
+            @include rem(height, 17.5rem);
+        }
+
+        @include bp('medium') {
+            @include rem(height, 21rem);
+        }
+
+        @include bp('large') {
+            @include rem(height, 27rem);
+        }
+    }
+
+    @if $size == 'medium' {
+        @include rem(height, 18rem);
+
+        @include bp('small') {
+            @include rem(height, 21rem);
+        }
+
+        @include bp('medium') {
+            @include rem(height, 25.5rem);
+        }
+
+        @include bp('large') {
+            @include rem(height, 34rem);
+        }
+    }
+
+    @if $size == 'large' {
+        @include rem(height, 24rem);
+
+        @include bp('small') {
+            @include rem(height, 28.5rem);
+        }
+
+        @include bp('medium') {
+            @include rem(height, 34rem);
+        }
+
+        @include bp('large') {
+            @include rem(height, 41rem);
+        }
+    }
+
+    @if $size == 'extra large' {
+        @include rem(height, 27.5rem);
+
+        @include bp('small') {
+            @include rem(height, 32.5rem);
+        }
+
+        @include bp('medium') {
+            @include rem(height, 39rem);
+        }
+
+        @include bp('large') {
+            @include rem(height, 48rem);
+        }
+    }
+}
+
+@mixin hero-overlay($color: $black, $opacity: 0.4, $text-color: $white) {
+    &:after {
+        background-color: rgba($color, $opacity);
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        @include z('overlay');
+    }
+
+    .content {
+        box-sizing: border-box;
+        color: $text-color;
+        @include rem(padding, 2.4rem);
+        position: absolute;
+        bottom: 10%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        @include rem(max-width, 96rem);
+        width: 100%;
+        @include z('overlay-content');
+
+        .title {
+            @include rem(font-size, 3.2rem);
+            text-shadow: 0 0 .5em rgba($black, 0.15);
+        }
+
+        .caption {
+            color: rgba($text-color, 0.8);
+            line-height: 1.35;
+            margin-top: 0.3em;
+        }
+
+        &.centered {
+            text-align: center;
+        }
+
+        @include bp('medium') {
+            .title,
+            .caption {
+                @include rem(max-width, 72rem);
+            }
+
+            &.centered {
+                text-align: center;
+
+                .title,
+                .caption {
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+        }
+
+        @include bp('large') {
+            @include rem(padding, 2.4rem 0);
+        }
+
+        @include bp('extra large') {
+            @include rem(max-width, 114rem);
+        }
+    }
+}
+
+@mixin hero-image() {
+    background-image: url('http://unsplash.it/1800/450');
+    background-position: center;
+    background-size: cover;
+}
+
+.hero {
+    @include hero();
+
+    &.image {
+        @include hero-image();
+    }
+
+    // Sizes
+    &.viewport {
+        @include hero('viewport');
+    }
+
+    &.small {
+        @include hero('small');
+    }
+
+    &.large {
+        @include hero('large');
+    }
+
+    &.extra.large {
+        @include hero('extra large');
+    }
+
+    // Overlay
+    &.overlay,
+    &.faded {
+        @include hero-overlay($black);
+
+        &.white {
+            @include hero-overlay($white, 0.7, $black);
+        }
+    }
+}

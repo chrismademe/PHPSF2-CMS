@@ -1,0 +1,29 @@
+body {
+    color: $black;
+    font-family: $body-font-family;
+    font-size: $body-font-size;
+}
+
+p {
+    line-height: 1.5;
+    margin: 0.95em 0;
+
+    &:first-child {
+        margin-top: 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.wrapper,
+.container {
+    box-sizing: border-box;
+    width: 100%;
+
+    @include bp('large') {
+        margin: 0 auto;
+        @include rem(width, 96rem);
+    }
+}

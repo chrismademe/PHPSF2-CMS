@@ -1,0 +1,55 @@
+{{ include('partials/header.twig') }}
+
+<section class="page-title">
+    <div class="wrapper">
+        <h1>Posts</h1>
+        <p>Manage your posts</p>
+    </div>
+</section>
+
+<section class="page-container">
+    <div class="wrapper">
+
+        {% if cms.posts %}
+        <main class="main post-list">
+
+            {% for post in cms.posts %}
+                <article class="post card">
+                    <h3 class="title"><a href="/admin/edit?post_id={{ post.ID }}">{{ post.title }}</a></h3>
+                    <div class="image">
+                        <img src="http://unsplash.it/400/240">
+                    </div>
+                    <div class="content">{{ post.snippet }}</div>
+                    <div class="actions">
+                        <a class="edit-post" href="/admin/edit?post_id={{ post.ID }}">
+                            <i class="ion ion-edit icon left"></i> Edit
+                        </a>
+                        <a class="delete-post" href="/admin/delete?post_id={{ post.ID }}">
+                            <i class="ion ion-trash-a icon left"></i> Delete
+                        </a>
+                    </div>
+                </article>
+            {% endfor %}
+
+            <a class="post card add-new-post" href="/admin/new">
+                <div class="content">
+                    <i class="ion ion-plus"></i>
+                    <h2>New Post</h2>
+                </div>
+            </a>
+
+        </main>
+        {% endif %}
+
+        <div class="sidebar">
+
+            <div class="widget">
+                <a class="large accent block button" href="/admin/new"><i class="ion ion-plus icon left"></i> New Post</a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+{{ include('partials/footer.twig') }}

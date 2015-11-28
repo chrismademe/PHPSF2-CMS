@@ -1,0 +1,61 @@
+
+<!--[if lt IE 9]>
+<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<script>window.CKEDITOR_BASEPATH = '/assets/';</script>
+
+{# Site wide Javascript #}
+{% if site.scripts %}
+    {% for script in site.scripts %}
+    <script src="{{ script.src }}"{% if script.async %} async{% endif %}></script>
+    {% endfor %}
+{% endif %}
+
+{# Page specific Javascript #}
+{% if page.scripts %}
+    {% for script in page.scripts %}
+    <script src="{{ script.src }}"{% if script.async %} async{% endif %}></script>
+    {% endfor %}
+{% endif %}
+
+<script>
+
+CKEDITOR.editorConfig = function( config ) {
+	// Define changes to default configuration here.
+	// For complete reference see:
+	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
+
+	// The toolbar groups arrangement, optimized for a single toolbar row.
+	config.toolbarGroups = [
+		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
+		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
+		{ name: 'forms' },
+		{ name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+		{ name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+		{ name: 'links' },
+		{ name: 'insert' },
+		{ name: 'styles' },
+		{ name: 'colors' },
+		{ name: 'tools' },
+		{ name: 'others' },
+		{ name: 'about' }
+	];
+
+	// The default plugins included in the basic setup define some buttons that
+	// are not needed in a basic editor. They are removed here.
+	config.removeButtons = 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript';
+
+	// Dialog windows are also simplified.
+	config.removeDialogTabs = 'link:advanced';
+};
+
+CKEDITOR.replace( 'wysiwyg', {
+    skin: 'office2013,/assets/skins/office2013/'
+} );
+</script>
+
+</body>
+</html>

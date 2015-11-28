@@ -1,0 +1,94 @@
+form {
+
+    .field {
+        @include rem(margin, 0.9rem 0);
+    }
+
+}
+
+fieldset {
+    border: 1px solid $light-grey;
+    border-radius: $border-radius;
+    @include rem(margin, 1.5rem 0);
+    @include rem(padding, 1.4rem);
+
+    &:first-of-type {
+        margin-top: 0;
+    }
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.2em;
+
+    &.required::after {
+        content: "*";
+    }
+
+    &.is-hidden {
+        display: none;
+    }
+
+    abbr {
+        display: none;
+    }
+}
+
+input[type="text"],
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="tel"],
+input[type="search"],
+select,
+textarea {
+    background-color: $white;
+    border: 1px solid $light-grey;
+    border-radius: $border-radius;
+    box-sizing: border-box;
+    font-family: $body-font-family;
+    @include rem(font-size, $input-font-size);
+    @include rem(padding, 0.85rem);
+    width: 100%;
+
+    &.is-invalid {
+        border-color: $red;
+    }
+
+    &:hover {
+        border: 1px solid $grey;
+    }
+
+    &:focus {
+        appearance: none;
+        border-color: $blue;
+        box-shadow: none;
+        outline: none;
+    }
+
+    // Custom
+    &.post-title {
+        @include rem(font-size, 2.5rem);
+        font-weight: 300;
+    }
+}
+
+input[type="search"] {
+    appearance: none;
+}
+
+select {
+    background: url('../images/select.png') right no-repeat white;
+    @include rem(padding, 0.85rem 1.85rem 0.85rem 0.85rem);
+}
+
+textarea {
+    @include rem(height, 15rem);
+    resize: vertical;
+}

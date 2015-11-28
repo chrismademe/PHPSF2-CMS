@@ -1,0 +1,31 @@
+ul {
+    @include rem(margin, 1.8rem 0);
+
+    li {
+        @include rem(padding, 0.3rem 0);
+    }
+
+    &.indented {
+        @include rem(margin-left, 1.8rem);
+    }
+
+    &.inline {
+        li {
+            display: inline-block;
+            @include rem(padding-right, 0.6rem);
+        }
+    }
+}
+
+dl {
+    @include rem(margin-bottom, 1rem);
+
+    dt {
+        font-weight: 600;
+        @include rem(margin-top, 1rem);
+    }
+
+    dd {
+        margin: 0;
+    }
+}

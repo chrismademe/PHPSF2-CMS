@@ -11,12 +11,13 @@ app/core
 app/includes
 !app/plugins
 app/plugins/*
+!app/plugins/cms
 !app/plugins/cms/*
 !app/theme
 app/theme/*
+!app/theme/admin
 !app/theme/admin/*
 app/config.php
 app/functions.php
-public_html
 init.php
 .env.example

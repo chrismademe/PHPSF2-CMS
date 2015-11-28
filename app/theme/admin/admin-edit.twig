@@ -1,0 +1,73 @@
+{{ include('partials/header.twig') }}
+
+<section class="page-title">
+    <div class="wrapper">
+        <h1>Edit {{ cms.post.title }}</h1>
+    </div>
+</section>
+
+<section class="page-container post-editor">
+    <div class="wrapper">
+        <form class="ajax-form" action="/admin/post/edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="post_id" value="{{ post.ID }}">
+
+            {% if not cms.error %}
+            <main class="main">
+
+                <div class="card">
+                    <div class="content">
+                        <div class="field">
+                            <label for="title">Post Title</label>
+                            <input class="post-title" type="text" name="title" placeholder="Title..." value="{{ cms.post.title }}">
+                        </div>
+                        <div class="field">
+                            <label for="content">Post Content</label>
+                            <textarea id="wysiwyg" name="content" placeholder="Your post goes here...">{{ cms.post.content }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <div class="sidebar">
+
+                <div class="card">
+                    <div class="content">
+                        <div class="post-date">
+                            <i class="ion ion-clock icon left"></i> {{ cms.post.date }}
+                        </div>
+                        <div class="field">
+                            <button class="positive" type="submit">Save</button>
+                            <a class="negative button" href="/admin/delete?post_id={{ post.ID }}">
+                                <i class="ion ion-trash-a icon left"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="title">Post Photo</h3>
+                    {% if cms.post.cover_image %}
+                    <div class="image">
+                        <img src="{{ cms.post.cover_image }}">
+                    </div>
+                    {% endif %}
+                    <div class="content">
+                        <input type="file" name="photo">
+                    </div>
+                </div>
+
+            </div>
+            {% else %}
+
+            <main class="main">
+                <div class="{{ cms.error.type }} alert">{{ cms.error.message|raw }}</div>
+            </main>
+
+            {% endif %}
+
+        </form>
+    </div>
+</section>
+
+{{ include('partials/footer.twig') }}

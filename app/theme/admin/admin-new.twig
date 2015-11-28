@@ -1,0 +1,61 @@
+{{ include('partials/header.twig') }}
+
+<section class="page-title">
+    <div class="wrapper">
+        <h1>New Post</h1>
+    </div>
+</section>
+
+<section class="page-container post-editor">
+    <div class="wrapper">
+        <form class="ajax-form" action="/admin/post/new" method="post" enctype="multipart/form-data">
+
+            {% if not cms.error %}
+            <main class="main">
+
+                <div class="card">
+                    <div class="content">
+                        <div class="field">
+                            <label for="title">Post Title</label>
+                            <input class="post-title" type="text" name="title" placeholder="Title...">
+                        </div>
+                        <div class="field">
+                            <label for="content">Post Content</label>
+                            <textarea id="wysiwyg" name="content"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+
+            <div class="sidebar">
+
+                <div class="card">
+                    <h3 class="title">Post Photo</h3>
+                    <div class="content">
+                        <input type="file" name="photo">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="content">
+                        <div class="field">
+                            <button class="positive" type="submit">Publish</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {% else %}
+
+            <main class="main">
+                <div class="{{ cms.error.type }} alert">{{ cms.error.message|raw }}</div>
+            </main>
+
+            {% endif %}
+
+        </form>
+    </div>
+</section>
+
+{{ include('partials/footer.twig') }}
