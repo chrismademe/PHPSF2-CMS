@@ -1,0 +1,22 @@
+/.sass-cache
+/node_modules
+/vendor
+.cache
+.env
+
+
+# PHPSF2
+app/controller
+app/core
+app/includes
+!app/plugins
+app/plugins/*
+!app/plugins/cms/*
+!app/theme
+app/theme/*
+!app/theme/admin/*
+app/config.php
+app/functions.php
+public_html
+init.php
+.env.example
