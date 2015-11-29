@@ -25,3 +25,13 @@ foreach ( $ui_files as $file ) {
     }
 
 }
+
+# Run Install Steps
+switch ( $path ) {
+
+    # Step 1
+    case 'admin/install':
+        require_once __DIR__ . '/inc/step-1.php';
+    break;
+
+}
