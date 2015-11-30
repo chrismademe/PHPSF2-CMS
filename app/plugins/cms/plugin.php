@@ -39,6 +39,6 @@
     $variables->add('cms', array());
 
     # Store Config in CMS Variable
-    $variables->extend('cms', 'path', $sf_cms_config);
+    $variables->extend('cms', 'path', $sf_config);
 
 #}

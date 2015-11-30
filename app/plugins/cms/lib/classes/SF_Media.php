@@ -1,6 +1,6 @@
 <?php
 
-class SF_Posts {
+class SF_Media {
 
     # Properties
     private $db;
@@ -10,9 +10,6 @@ class SF_Posts {
 
     # Last Insert ID
     public $ID;
-
-    # Current Post ID
-    public $current_post;
 
     /**
      * Construct
@@ -24,8 +21,7 @@ class SF_Posts {
 
         # Default Config
         $this->config = array(
-            'table'         => 'sf_posts',
-            'meta_table'    => 'sf_post_meta'
+            'table'         => 'sf_media'
         );
 
         # Custom Config
@@ -39,22 +35,18 @@ class SF_Posts {
 
         # Required properties
         $this->required = array(
-            'title',
-            'content'
+            'post',
+            'filename'
         );
 
         # Available properties
         $this->properties = array(
             'ID',
-            'author',
-            'alias',
-            'type',
-            'title',
+            'post',
             'date',
             'modified',
-            'snippet',
-            'content',
-            'parent',
+            'filename',
+            'type',
             'status'
         );
 
@@ -133,12 +125,12 @@ class SF_Posts {
 
         # Create SF_Post objects
         foreach ( $query as $post ) {
-            $raw_posts[] = new SF_Post($post);
+            $raw_posts[] = new SF_Media_Object($post);
         }
 
         # Apply Filters
         foreach ( $raw_posts as $post ) {
-            $the_posts[] = apply_filters( 'get_posts', $post );
+            $the_posts[] = apply_filters( 'get_media', $post );
         }
 
         # Return Objects
@@ -167,21 +159,6 @@ class SF_Posts {
             throw new Exception('Missing required fields');
         }
 
-        # Generate Alias
-        if ( !array_key_exists( 'alias', $fields ) ) {
-            $fields['alias'] = $this->generate_alias($fields['title']);
-        }
-
-        # Check Alias does not already exists
-        if ( $this->post_exists( $fields['alias'] ) ) {
-            throw new Exception('Post with this alias already exists!');
-        }
-
-        # Generate Snippet
-        if ( !array_key_exists( 'snippet', $fields ) ) {
-            $fields['snippet'] = $this->generate_snippet($fields['content']);
-        }
-
         # Query
         if ( ! $this->ID = $this->db->insert($this->config['table'], $fields) ) {
             return false;
@@ -205,7 +182,7 @@ class SF_Posts {
 
         # Check object exists
         if ( !$this->post_exists($ID) ) {
-            throw new Exception('Post does not exist');
+            throw new Exception('Media does not exist');
         }
 
         # If $ID is a string, get the ID
@@ -270,7 +247,7 @@ class SF_Posts {
 
         # Check object exists
         if ( !$this->post_exists($ID) ) {
-            throw new Exception('Post does not exist');
+            throw new Exception('Media does not exist');
         }
 
         return $this->db->delete(
@@ -365,61 +342,5 @@ class SF_Posts {
     private function is_valid_property( $field ) {
         return in_array( $field, $this->properties );
     }
-
-    /**
-     * Generate Alias
-     *
-     * Generates a URL friendly
-     * string from the post title
-     */
-    private function generate_alias( $string ) {
-
-        # Generate Alias
-    	$clean = iconv('UTF-8', 'ASCII//TRANSLIT', $string);
-    	$clean = preg_replace("/[^a-zA-Z0-9\/_| -]/", '', $clean);
-    	$clean = strtolower(trim($clean, '-'));
-    	$clean = preg_replace("/[\/_| -]+/", '-', $clean);
-
-        # Check Alias isn't taken
-        #if ( $this->post_exists($clean) ) {
-        #    $clean = $clean . '-' . time();
-        #}
-
-        # Return Alias
-    	return $clean;
-
-    }
-
-    /**
-     * Generate Snippet
-     *
-     * Return a maximum of 150
-     * character snippet
-     */
-    public function generate_snippet( $string, $length = 150 ) {
-
-        # Check $string is a string
-        if ( !is_string($string) || strlen($string) <= 0 ) {
-            throw new Exception('1st argument must be a string');
-        }
-
-        # Check $length is a number
-        if ( !is_numeric($length) || $length < 0 ) {
-            throw new Exception('Invalid string length');
-        }
-
-        # Strip HTML
-        $string = strip_tags($string);
-
-        # Create snippet
-        $snippet = substr($string, 0, $length);
-
-        if ( strlen($snippet) >= $length-3 ) {
-            $snippet = $snippet .'...';
-        }
-
-        return $snippet;
-
-     }
 
 }
