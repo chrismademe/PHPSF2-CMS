@@ -9,7 +9,7 @@
 <section class="page-container post-editor">
     <div class="wrapper">
         <form class="ajax-form" action="/admin/post/edit" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="post_id" value="{{ post.ID }}">
+            <input type="hidden" name="post_id" value="{{ cms.post.ID }}">
 
             {% if not cms.error %}
             <main class="main">
@@ -22,7 +22,7 @@
                         </div>
                         <div class="field">
                             <label for="content">Post Content</label>
-                            <textarea id="wysiwyg" name="content" placeholder="Your post goes here...">{{ cms.post.content }}</textarea>
+                            <textarea id="wysiwyg" name="content" placeholder="Your post goes here...">{{ cms.post.content|raw }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -35,6 +35,13 @@
                     <div class="content">
                         <div class="post-date">
                             <i class="ion ion-clock icon left"></i> {{ cms.post.date }}
+                        </div>
+                        <div class="field">
+                            <label for="status">Post Status</label>
+                            <select name="status">
+                                <option value="1">Published</option>
+                                <option value="0">Draft</option>
+                            </select>
                         </div>
                         <div class="field">
                             <button class="positive" type="submit">Save</button>

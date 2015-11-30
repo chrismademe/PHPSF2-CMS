@@ -102,3 +102,13 @@
         }
     }
 }
+
+// Login
+.admin-login-wrapper {
+    @include rem(margin-top, 10rem);
+    @include rem(max-width, 38rem);
+}
+
+.page-admin-login {
+    background-color: $brand;
+}

@@ -1,0 +1,25 @@
+{{ include('partials/head.twig') }}
+
+<section class="wrapper admin-login-wrapper">
+    <div class="card raised two admin-login">
+        <h3 class="title">Login</h3>
+        <div class="content">
+            <form class="ajax-form" action="/{{ cms.path.login_handler }}" method="post">
+                <div class="field">
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email">
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" name="password">
+                </div>
+                <div class="field">
+                    <button type="submit" class="positive">Login</button>
+                    <a class="extra small blank button" href="/admin/password">Forgotten your password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{{ include('partials/footer.twig') }}

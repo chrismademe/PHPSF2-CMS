@@ -205,7 +205,7 @@ class SF_Posts {
 
         # Check object exists
         if ( !$this->post_exists($ID) ) {
-            throw new Exception('Object does not exist');
+            throw new Exception('Post does not exist');
         }
 
         # If $ID is a string, get the ID
@@ -222,18 +222,11 @@ class SF_Posts {
         }
 
         # Query
-        $query = $this->db->update(
+        return $this->db->update(
             $this->config['table'],
             $fields,
             array( 'ID' => $ID )
         );
-
-        # Check response
-        if ( !$query ) {
-            return false;
-        }
-
-        return true;
 
     }
 

@@ -10,7 +10,12 @@ $sf_paths = array(
     'admin/edit',
     'admin/delete',
     'admin/posts',
-    'admin/install'
+    'admin/install',
+    'admin/post',
+    'admin/post/edit',
+    'admin/post/new',
+    'admin/post/delete',
+    $sf_cms_config['login_path']
 );
 
 # Route Requests to Admin

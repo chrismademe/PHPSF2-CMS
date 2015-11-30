@@ -17,7 +17,8 @@
  * email = Email address
  * isactive = User status
  */
-$sf_cms_config['login_path'] = '/admin/login';
+$sf_cms_config['login_path'] = 'admin/login';
+$sf_cms_config['login_handler'] = 'admin/post/login';
 
 #################################################
 ### No need to edit below this line           ###
