@@ -16,9 +16,11 @@
             {% for post in cms.posts %}
                 <article class="post card">
                     <h3 class="title"><a href="/admin/edit?post_id={{ post.ID }}">{{ post.title }}</a></h3>
+                    {% if post.cover_image %}
                     <div class="image">
-                        <img src="http://unsplash.it/400/240">
+                        <img src="{{ post.cover_image }}">
                     </div>
+                    {% endif %}
                     <div class="content">{{ post.snippet }}</div>
                     <div class="actions">
                         <a class="edit-post" href="/admin/edit?post_id={{ post.ID }}">
