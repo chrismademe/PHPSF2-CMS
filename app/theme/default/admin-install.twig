@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <title>Install PHPSF2 CMS</title>
+    <style>
+    body {
+        color: #454545;
+        font-family: sans-serif;
+        font-size: 14px;
+    }
+    .wrapper {
+        margin: 0 auto;
+        width: 400px;
+    }
+    .card {
+        border: 1px solid #eee;
+        border-radius: 3px;
+        margin-top: 30px;
+        padding: 18px 24px;
+    }
+    .button {
+        background-color: #572e8b;
+        border: 0;
+        border-radius: 3px;
+        color: white;
+        display: inline-block;
+        padding: 8px 12px;
+        cursor: pointer;
+    }
+    .file-list code {
+        color: #059d61;
+    }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+
+        <h1>Install PHPSF2 CMS</h1>
+
+        <div class="card">
+            <h3>Basics</h3>
+            <p>We need to copy a few files and folders to get us started. They are:</p>
+            <ul class="file-list">
+                <li {% if not cms_theme_folder %}style="color: #c94920; text-decoration: line-through"{% endif %}>Theme, to <code>/app/theme/admin</code></li>
+                <li {% if not cms_assets_folder %}style="color: #c94920; text-decoration: line-through"{% endif %}>Assets, to <code>/public_html/assets</code></li>
+            </ul>
+            <p><strong></strong></p>
+            <p>Once we've done that, we'll get on to setting up the database.</p>
+            {% if cms_theme_folder and cms_assets_folder %}
+            <p><button class="button">Do it!</button></p>
+            {% else %}
+            <p style="color: #da7c0e"><strong>1 or more of the folders above are not writeable. Please check permissions or install manually.</strong></p>
+            {% endif %}
+        </div>
+
+    </div>
+
+</body>
+</html>
