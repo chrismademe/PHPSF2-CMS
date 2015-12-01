@@ -20,6 +20,7 @@ define('DB_PASS', getenv('DB_PASS'));
 try {
     $pdo = new PDO('mysql:host='. DB_HOST .';port='. DB_PORT .';charset=utf8;dbname='. DB_NAME .'', DB_USER, DB_PASS);
     $pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     echo '<h1>Unable to connect to the database.</h1>';
     exit;

@@ -2,12 +2,12 @@
 
 <section class="wrapper admin-login-wrapper">
     <div class="logo">
-        <img src="http://assets.resknow.co.uk/branding/resknow/logo-278x80-white.png">
+        <img src="http://assets.resknow.co.uk/branding/resknow/logo-278x80.png">
     </div>
     <div class="card raised four admin-login">
-        <h3 class="title">Login</h3>
+        <h3 class="title">Add a User</h3>
         <div class="content">
-            <form class="ajax-form" action="/{{ cms.config.login_handler }}" method="post" data-push="/admin/posts">
+            <form class="ajax-form" action="/{{ cms.config.register_handler }}" method="post">
                 <div class="field">
                     <label for="email">E-mail</label>
                     <input type="email" name="email">

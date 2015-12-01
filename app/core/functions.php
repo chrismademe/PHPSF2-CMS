@@ -232,7 +232,7 @@ function is_loggedin() {
  * Session Helper Functions           *
  * --------------------------------- **/
 function session_exists( $session ) {
-    return ( isset( $_SESSION[$session] ) ? true : false );
+    return isset($_SESSION[$session]);
 }
 
 /**

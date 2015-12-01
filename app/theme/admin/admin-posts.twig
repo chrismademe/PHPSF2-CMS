@@ -21,7 +21,7 @@
                             <img src="/{{ post.cover_image }}">
                         </div>
                         {% endif %}
-                        <div class="content">{{ post.snippet }}</div>
+                        <div class="content">{{ post.snippet|raw }}</div>
                         <div class="actions">
                             <a class="edit-post" href="/admin/edit?post_id={{ post.ID }}">
                                 <i class="ion ion-edit icon left"></i> Edit
@@ -51,6 +51,12 @@
             <div class="widget">
                 <a class="large accent block button" href="/admin/new"><i class="ion ion-plus icon left"></i> New Post</a>
             </div>
+
+            {% if user.id == cms.config.admin_user_id %}
+            <div class="widget">
+                <a class="large green block button" href="/admin/register"><i class="ion ion-person-add icon left"></i> New User</a>
+            </div>
+            {% endif %}
 
         </div>
 

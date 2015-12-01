@@ -1,0 +1,7 @@
+.widget {
+    @include rem(margin-top, 2.4rem);
+
+    &:first-child {
+        margin-top: 0;
+    }
+}

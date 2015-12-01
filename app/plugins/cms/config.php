@@ -7,6 +7,18 @@
 #################################################
 
 /**
+ * Admin User ID
+ *
+ * there is no need for a complex
+ * permissions system here, so we
+ * simply do a check to see if
+ * the current user can make certain
+ * actions based on whether they
+ * the main user or not.
+ */
+$sf_config['admin_user_id'] = 1;
+
+/**
  * User Login Page
  *
  * CMS uses the same session
@@ -26,6 +38,7 @@
  */
 $sf_config['login_path'] = 'admin/login';
 $sf_config['login_handler'] = 'admin/post/login';
+$sf_config['logout_path'] = 'admin/logout';
 
 /**
  * User Registration Page

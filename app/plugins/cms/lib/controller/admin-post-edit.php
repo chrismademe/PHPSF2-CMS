@@ -64,6 +64,9 @@ if ( $response === false ) {
     unset($data['photo']);
     unset($data['cover_photo']);
 
+    # Add Author ID
+    $data['author'] = $variables->get('user|id');
+
     # Create new Post
     if ( !$posts->update($ID, $data) ) {
         JSON::parse( 100, 'error', $data['title'] . ' was not saved.', true );

@@ -2,6 +2,15 @@
 
     {{ include('partials/browser-update.twig', ignore_missing = true) }}
 
+    <nav class="mobile-navigation">
+        <a class="close" href="#">&times;</a>
+        <ul>
+            <li><a href="/admin/new" class="add-new-post"><i class="ion ion-plus icon left"></i> New Post</a></li>
+            <li><a href="/admin/posts"><i class="ion ion-android-list icon left"></i> Posts</a></li>
+            <li><a href="/{{ cms.config.logout_path }}"><i class="ion ion-log-out icon left"></i> Logout</a></li>
+        </ul>
+    </nav>
+
     <header class="banner">
         <div class="wrapper">
 
@@ -14,8 +23,8 @@
             <nav class="navigation">
                 <ul>
                     <li><a href="/admin/new" class="add-new-post"><i class="ion ion-plus icon left"></i> New Post</a></li>
-                    <li><a href="/admin/posts">Posts</a></li>
-                    <li><a href="/admin/settings"><i class="ion ion-gear-a icon left"></i> Settings</a></li>
+                    <li><a href="/admin/posts"><i class="ion ion-android-list icon left"></i> Posts</a></li>
+                    <li><a href="/{{ cms.config.logout_path }}"><i class="ion ion-log-out icon left"></i> Logout</a></li>
                 </ul>
             </nav>
 

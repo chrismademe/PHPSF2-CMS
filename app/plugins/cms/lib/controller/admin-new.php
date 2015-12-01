@@ -7,5 +7,5 @@ if ( !is_loggedin() ) {
 
 # Set Page Title
 $variables->extend('page', 'meta', array(
-    'title' => 'CMS | ' . $variables->get('site|name')
+    'title' => 'New Post | ' . $variables->get('site|name')
 ));

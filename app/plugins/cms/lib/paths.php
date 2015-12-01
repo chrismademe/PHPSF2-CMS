@@ -17,7 +17,11 @@ $sf_paths = array(
     'admin/post/new',
     'admin/post/delete',
     'admin/post/upload',
-    $sf_config['login_path']
+    $sf_config['login_path'],
+    $sf_config['login_handler'],
+    $sf_config['logout_path'],
+    $sf_config['register_path'],
+    $sf_config['register_handler']
 );
 
 # Route Requests to Admin

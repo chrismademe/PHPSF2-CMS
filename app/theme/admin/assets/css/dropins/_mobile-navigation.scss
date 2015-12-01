@@ -4,8 +4,9 @@
     @include rem(padding, 4.2rem 0);
     position: absolute;
     top: 0;
-    left: 0;
+    @include rem(left, -28rem);
     height: 100%;
+    transition: left 0.3s;
     @include rem(width, 28rem);
     z-index: 99999;
 
@@ -14,10 +15,19 @@
         box-shadow: 0 0 $shadow rgba($black, 0.15);
     }
 
+    &.is-open {
+        left: 0;
+    }
+
     // Right
     &.right {
         left: auto;
-        right: 0;
+        transition: right 0.3s;
+        @include rem(right, -28rem);
+
+        &.is-open {
+            right: 0;
+        }
     }
 
     ul {

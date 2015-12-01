@@ -2,6 +2,11 @@
 
 use CMS\Posts;
 
+# Login check
+if ( !is_loggedin() ) {
+    header('location: /' . $sf_config['login_path']);
+}
+
 # Create Posts Object
 $cms = new Posts();
 

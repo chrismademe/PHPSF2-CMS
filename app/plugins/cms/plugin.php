@@ -39,6 +39,13 @@
     $variables->add('cms', array());
 
     # Store Config in CMS Variable
-    $variables->extend('cms', 'path', $sf_config);
+    $variables->extend('cms', 'config', $sf_config);
+
+    # Store User Session
+    if ( is_loggedin() && $sf_config['login_handler'] == 'admin/post/login' ) {
+        $variables->extend('user', 'id', $_SESSION[SESSION_ID]['user']['id']);
+        $variables->extend('user', 'email', $_SESSION[SESSION_ID]['user']['email']);
+        $variables->extend('user', 'isactive', $_SESSION[SESSION_ID]['user']['isactive']);
+    }
 
 #}

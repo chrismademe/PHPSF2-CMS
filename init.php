@@ -2,12 +2,6 @@
 
 session_start();
 
-$_SESSION['sf_sess_24tc3t5']['user'] = array(
-    'id' => 1,
-    'email' => 'chris@chrismade.me',
-    'isactive' => 1
-);
-
 use Controller\Controller;
 use Dotenv\Dotenv;
 use Theme\Theme;

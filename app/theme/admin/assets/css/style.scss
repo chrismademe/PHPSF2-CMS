@@ -36,7 +36,7 @@
     }
 
     .navigation-toggle {
-        @include rem(padding, .9rem 2.4rem);
+        @include rem(padding, 1.5rem 2.4rem);
     }
 
     .navigation {
@@ -59,11 +59,15 @@
     }
 }
 
+// Mobile Menu
+@import "dropins/mobile-navigation";
+
 // Post List
 .post-list {
     @include clearfix;
 
     .post {
+        position: relative;
 
         .draft-label {
             display: none;
@@ -102,6 +106,27 @@
             }
         }
 
+        &.add-new-post {
+            border: 2px dashed $light-grey;
+            display: block;
+            text-align: center;
+
+            i {
+                @include rem(font-size, 2.2rem);
+                margin-bottom: .3em;
+            }
+
+            h2 {
+                font-weight: 900;
+            }
+
+            &:hover {
+                border: 2px solid $brand;
+                background-color: $brand;
+                color: $white;
+            }
+        }
+
     }
 
     .alert.no-posts {
@@ -118,27 +143,6 @@
             margin-bottom: $gutter;
             margin-right: $gutter;
             @include span-columns(6);
-
-            &.add-new-post {
-                border: 2px dashed $light-grey;
-                display: block;
-                text-align: center;
-
-                i {
-                    @include rem(font-size, 2.2rem);
-                    margin-bottom: .3em;
-                }
-
-                h2 {
-                    font-weight: 900;
-                }
-
-                &:hover {
-                    border: 2px solid $brand;
-                    background-color: $brand;
-                    color: $white;
-                }
-            }
 
             &:hover {
                 @include card-level(2);
@@ -159,6 +163,16 @@
 .admin-login-wrapper {
     @include rem(margin-top, 10rem);
     @include rem(max-width, 38rem);
+    margin-left: auto;
+    margin-right: auto;
+
+    .logo {
+        text-align: center;
+
+        img {
+            @include rem(width, 18rem);
+        }
+    }
 }
 
 .page-admin-login {
