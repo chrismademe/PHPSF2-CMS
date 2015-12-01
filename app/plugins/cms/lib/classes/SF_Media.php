@@ -1,6 +1,9 @@
 <?php
 
-class SF_Media {
+namespace CMS;
+use Exception;
+
+class Media {
 
     # Properties
     private $db;
@@ -125,7 +128,7 @@ class SF_Media {
 
         # Create SF_Post objects
         foreach ( $query as $post ) {
-            $raw_posts[] = new SF_Media_Object($post);
+            $raw_posts[] = new Media_Object($post);
         }
 
         # Apply Filters

@@ -1,6 +1,9 @@
 <?php
 
-class SF_Media {
+namespace CMS;
+use Exception;
+
+class Media_Object {
 
     # Properties
     public $ID;
@@ -19,7 +22,7 @@ class SF_Media {
 
         # Check data
         if ( !is_object($media) && !is_array($media) ) {
-            throw new Exception('SF_Media_Object data must be object or array');
+            throw new Exception('Media_Object data must be object or array');
         }
 
         # Save data
@@ -30,7 +33,7 @@ class SF_Media {
         # Load Meta
         if ( $meta ) {
             $this->meta = medoo()->select(
-                'sf_post_meta',
+                'sf_meta',
                 '*',
                 array( 'post' => $this->ID )
             );
@@ -50,7 +53,7 @@ class SF_Media {
          * Run Query
          */
         return medoo()->has(
-            'sf_post_meta',
+            'sf_meta',
             array( 'post' => $this->ID )
         );
 

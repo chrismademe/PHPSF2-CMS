@@ -1,15 +1,19 @@
 <?php
 
+use CMS\Posts;
+
 # Create Posts Object
-$cms = new SF_Posts();
+$cms = new Posts();
 
 # Get All Posts
-$posts = $cms->get();
+$posts = $cms->get(array(
+    'status' => array(0,1)
+));
 
 # If only 1, nest it so it works in the loop
-if ( count($posts) === 1 ) {
+if ( is_object($posts) ) {
     $the_posts[] = $posts;
-} else {
+} elseif ( is_array($posts) ) {
     $the_posts = $posts;
 }
 

@@ -29,14 +29,33 @@
 .banner {
     .logo {
         color: $brand;
+
+        img {
+            @include rem(height, 4rem);
+        }
     }
 
     .navigation-toggle {
         @include rem(padding, .9rem 2.4rem);
     }
 
-    .navigation .add-new-post {
-        color: $green;
+    .navigation {
+
+        ul a {
+            opacity: 0.6;
+            display: block;
+            font-weight: 600;
+            @include rem(padding, 1.2rem 1.4rem);
+            transition: opacity .3s;
+
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+        .add-new-post {
+            color: $green;
+        }
     }
 }
 
@@ -45,6 +64,29 @@
     @include clearfix;
 
     .post {
+
+        .draft-label {
+            display: none;
+        }
+
+        &.draft {
+            opacity: 0.6;
+            transition: opacity 0.3;
+
+            .draft-label {
+                background-color: $yellow;
+                box-sizing: border-box;
+                color: $white;
+                display: block;
+                font-weight: 700;
+                @include rem(padding, 1rem);
+                position: absolute;
+                @include rem(top, 4rem);
+                left: 0;
+                width: 100%;
+                text-align: center;
+            }
+        }
 
         .edit-post {
             i,
@@ -60,6 +102,12 @@
             }
         }
 
+    }
+
+    .alert.no-posts {
+        font-weight: 700;
+        @include rem(margin-bottom, 2.4rem);
+        text-align: center;
     }
 
     @include bp('large') {
@@ -94,6 +142,10 @@
 
             &:hover {
                 @include card-level(2);
+
+                &.draft {
+                    opacity: 1;
+                }
             }
 
             &:nth-child(2n) {

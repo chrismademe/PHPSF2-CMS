@@ -38,9 +38,23 @@ $sf_config['login_handler'] = 'admin/post/login';
 $sf_config['register_path'] = 'admin/register';
 $sf_config['register_handler'] = 'admin/post/register';
 
+/**
+ * Media Uploads Folder
+ *
+ * This is where any uploaded media
+ * files are stored.
+ *
+ * @NOTE: Make sure the permissions
+ * are set to at least 775!
+ */
+$sf_config['media_dir'] = 'assets/media';
+
 #################################################
 ### No need to edit below this line           ###
 #################################################
 
 # Apply Filters
 $sf_config = apply_filters( 'sf_config', $sf_config );
+
+# Define Media Uploads Folder as constant
+define('CMS_MEDIA_DIR', $sf_config['media_dir']);

@@ -6,6 +6,7 @@
 
 $sf_paths = array(
     'admin',
+    'admin/update',
     'admin/new',
     'admin/edit',
     'admin/delete',
@@ -15,6 +16,7 @@ $sf_paths = array(
     'admin/post/edit',
     'admin/post/new',
     'admin/post/delete',
+    'admin/post/upload',
     $sf_config['login_path']
 );
 

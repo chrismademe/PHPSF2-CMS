@@ -1,7 +1,9 @@
 <?php
 
+use CMS\Posts;
+
 # Create Posts Object
-$cms = new SF_Posts();
+$cms = new Posts();
 
 # Check for Post ID
 if ( !isset($_GET['post_id']) || isset($_GET['post_id']) && !$cms->post_exists($_GET['post_id']) ) {
@@ -15,7 +17,7 @@ if ( !isset($_GET['post_id']) || isset($_GET['post_id']) && !$cms->post_exists($
 
     # Get All Posts
     $post = $cms->get(array(
-        'id' => $_GET['post_id']
+        'ID' => $_GET['post_id']
     ));
 
     # Friendly date

@@ -8,7 +8,7 @@
 
 <section class="page-container post-editor">
     <div class="wrapper">
-        <form class="ajax-form" action="/admin/post/edit" method="post" enctype="multipart/form-data">
+        <form class="ajax-form" action="/admin/post/edit" method="post" data-push="/admin/posts" enctype="multipart/form-data">
             <input type="hidden" name="post_id" value="{{ cms.post.ID }}">
 
             {% if not cms.error %}
@@ -39,8 +39,8 @@
                         <div class="field">
                             <label for="status">Post Status</label>
                             <select name="status">
-                                <option value="1">Published</option>
-                                <option value="0">Draft</option>
+                                <option{% if post.status == 1 %} selected{% endif %} value="1">Published</option>
+                                <option{% if post.status == 0 %} selected{% endif %} value="0">Draft</option>
                             </select>
                         </div>
                         <div class="field">
@@ -55,12 +55,13 @@
                 <div class="card">
                     <h3 class="title">Post Photo</h3>
                     {% if cms.post.cover_image %}
-                    <div class="image">
-                        <img src="{{ cms.post.cover_image }}">
+                    <div id="upload_preview" class="image">
+                        <img src="/{{ cms.post.cover_image }}">
                     </div>
                     {% endif %}
                     <div class="content">
-                        <input type="file" name="photo">
+                        <input id="upload_file" type="file" name="photo">
+                        <input id="upload_file_input" type="hidden" name="cover_photo">
                     </div>
                 </div>
 

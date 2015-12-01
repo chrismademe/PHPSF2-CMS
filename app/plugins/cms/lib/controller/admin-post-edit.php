@@ -1,5 +1,8 @@
 <?php
 
+use CMS\Posts;
+use CMS\Media;
+
 # Validate Input
 switch (true) {
 
@@ -19,7 +22,7 @@ switch (true) {
 $form = new GUMP();
 
 # Sanitize data
-$data = $form->sanitize( form_data() );
+$data = form_data();
 
 # Filter Input
 $form->filter($data, array(
@@ -46,7 +49,7 @@ if ( $response === false ) {
 } else {
 
     # Create new Posts object
-    $posts = new SF_Posts();
+    $posts = new Posts();
 
     # Get Post ID
     $ID = $data['post_id'];
@@ -55,33 +58,33 @@ if ( $response === false ) {
     unset($data['post_id']);
 
     # Get Photo
-    $photo = $data['photo'];
+    $photo = $data['cover_photo'];
 
     # Remove Photo from $data
     unset($data['photo']);
+    unset($data['cover_photo']);
 
     # Create new Post
     if ( !$posts->update($ID, $data) ) {
-        print_r($posts);
-        JSON::parse( 100, 'error', $data['title'] . ' was not saved.', null, true );
+        JSON::parse( 100, 'error', $data['title'] . ' was not saved.', true );
     }
 
     # Save Cover Image
     if ( !empty( $photo ) ) {
 
         # New Media Object
-        $media = new SF_Media();
+        $media = new Media();
 
-        # Media Data
-        $media_data = array(
+        # Media fields
+        $fields = array(
             'post'      => $ID,
-            'filename'  => $data['photo'],
+            'filename'  => $photo,
             'type'      => 'cover_image'
         );
 
-        # Create Cover Image
-        if ( !$media->create($media_data) ) {
-            JSON::parse( 100, 'error', 'There was an error uploading the post photo, ' . $data['title'] . ' was not saved.', null, true );
+        # Save it!
+        if ( !$media->create($fields) ) {
+            JSON::parse( 200, 'warning', $data['title'] . ' was saved but there was a problem saving the photo.', null, true );
         }
 
     }

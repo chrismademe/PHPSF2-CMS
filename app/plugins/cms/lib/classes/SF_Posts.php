@@ -1,6 +1,9 @@
 <?php
 
-class SF_Posts {
+namespace CMS;
+use Exception;
+
+class Posts {
 
     # Properties
     private $db;
@@ -97,7 +100,7 @@ class SF_Posts {
 
             # No arguments
             case !isset($options):
-                $where = false;
+                $where = array();
             break;
 
             # More than 1 arguments
@@ -133,7 +136,7 @@ class SF_Posts {
 
         # Create SF_Post objects
         foreach ( $query as $post ) {
-            $raw_posts[] = new SF_Post($post);
+            $raw_posts[] = new Post($post);
         }
 
         # Apply Filters
@@ -217,7 +220,7 @@ class SF_Posts {
         $fields['modified'] = date('Y-m-d H:i:s');
 
         # Update Snippet
-        if ( !array_key_exists( 'snippet', $fields ) ) {
+        if ( isset($fields['content']) && !array_key_exists( 'snippet', $fields ) ) {
             $fields['snippet'] = $this->generate_snippet($fields['content']);
         }
 

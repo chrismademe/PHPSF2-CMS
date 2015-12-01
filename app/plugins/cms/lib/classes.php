@@ -10,3 +10,4 @@ require_once __DIR__ . '/classes/SF_Media_Object.php';
 
 # Helpers
 require_once __DIR__ . '/classes/JSON.php';
+require_once __DIR__ . '/classes/Image.php';

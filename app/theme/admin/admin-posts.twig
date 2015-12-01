@@ -10,28 +10,32 @@
 <section class="page-container">
     <div class="wrapper">
 
-        {% if cms.posts %}
         <main class="main post-list">
 
-            {% for post in cms.posts %}
-                <article class="post card">
-                    <h3 class="title"><a href="/admin/edit?post_id={{ post.ID }}">{{ post.title }}</a></h3>
-                    {% if post.cover_image %}
-                    <div class="image">
-                        <img src="{{ post.cover_image }}">
-                    </div>
-                    {% endif %}
-                    <div class="content">{{ post.snippet }}</div>
-                    <div class="actions">
-                        <a class="edit-post" href="/admin/edit?post_id={{ post.ID }}">
-                            <i class="ion ion-edit icon left"></i> Edit
-                        </a>
-                        <a class="delete-post" href="/admin/delete?post_id={{ post.ID }}">
-                            <i class="ion ion-trash-a icon left"></i> Delete
-                        </a>
-                    </div>
-                </article>
-            {% endfor %}
+            {% if cms.posts %}
+                {% for post in cms.posts %}
+                    <article class="post card {% if post.status < 1 %}draft{% endif %}">
+                        <h3 class="title"><a href="/admin/edit?post_id={{ post.ID }}">{{ post.title }}</a></h3>
+                        {% if post.cover_image %}
+                        <div class="image">
+                            <img src="/{{ post.cover_image }}">
+                        </div>
+                        {% endif %}
+                        <div class="content">{{ post.snippet }}</div>
+                        <div class="actions">
+                            <a class="edit-post" href="/admin/edit?post_id={{ post.ID }}">
+                                <i class="ion ion-edit icon left"></i> Edit
+                            </a>
+                            <a class="delete-post" href="/admin/delete?post_id={{ post.ID }}">
+                                <i class="ion ion-trash-a icon left"></i> Delete
+                            </a>
+                        </div>
+                        <div class="draft-label"><i class="ion ion-alert-circled icon left"></i> This post in set to draft, so it will not show up on your website.</div>
+                    </article>
+                {% endfor %}
+            {% else %}
+                <div class="warning alert no-posts"><i class="ion ion-alert-circled icon left"></i> You haven't posted anything yet.</div>
+            {% endif %}
 
             <a class="post card add-new-post" href="/admin/new">
                 <div class="content">
@@ -41,7 +45,6 @@
             </a>
 
         </main>
-        {% endif %}
 
         <div class="sidebar">
 

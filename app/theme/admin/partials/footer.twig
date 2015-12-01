@@ -55,6 +55,34 @@ CKEDITOR.editorConfig = function( config ) {
 CKEDITOR.replace( 'wysiwyg', {
     skin: 'office2013,/assets/skins/office2013/'
 } );
+
+/**
+ * Image Upload
+ */
+$(document).ready(function() {
+    $('#upload_file').imageUpload({
+        form: '.ajax-form',
+        handler: '/admin/post/upload',
+        onSuccess: function() {
+            console.log($(this));
+            console.log($(this)[0].url);
+            $("#upload_preview").html("<img>");
+            $(document).find("#upload_preview img").attr("src", "/" + $(this)[0].url);
+            $("#upload_file_input").val($(this)[0].url);
+
+            setTimeout(function() {
+                $(document).find(".iu-alert").fadeOut();
+            }, 1000);
+        },
+        onFail: function() {
+            console.log($(this)[0].response);
+        },
+        onError: function() {
+            console.log($(this)[0].response);
+        }
+    });
+});
+
 </script>
 
 </body>

@@ -1,6 +1,9 @@
 <?php
 
-class SF_Post {
+namespace CMS;
+use Exception;
+
+class Post {
 
     # Properties
     public $ID;
@@ -24,7 +27,7 @@ class SF_Post {
 
         # Check data
         if ( !is_object($post) && !is_array($post) ) {
-            throw new Exception('SF_Post data must be object or array');
+            throw new Exception('Post data must be object or array');
         }
 
         # Save data
@@ -35,7 +38,7 @@ class SF_Post {
         # Load Meta
         if ( $meta ) {
             $this->meta = medoo()->select(
-                'sf_post_meta',
+                'sf_meta',
                 '*',
                 array( 'post' => $this->ID )
             );
@@ -44,6 +47,8 @@ class SF_Post {
         # Load Cover Image
         if ( $this->has_cover_image() ) {
             $this->cover_image = $this->get_cover_image();
+        } else {
+            $this->cover_image = CMS_MEDIA_DIR . '/default.jpg';
         }
 
     }
@@ -60,7 +65,7 @@ class SF_Post {
          * Run Query
          */
         return medoo()->has(
-            'sf_post_meta',
+            'sf_meta',
             array( 'post' => $this->ID )
         );
 
@@ -140,7 +145,9 @@ class SF_Post {
                 'AND' => array(
                     'type' => 'cover_image',
                     'post' => $this->ID
-                )
+                ),
+                'ORDER' => 'date DESC',
+                'LIMIT' => 1
             )
         );
 
